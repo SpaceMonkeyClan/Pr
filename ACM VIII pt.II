@@ -1,0 +1,55 @@
+// Vector Sorting Example.
+
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <iterator>
+#include <list>
+#include <numeric>
+
+using namespace std;
+
+int main()
+{
+        // Using a List
+    list<int> pricePerRoom;
+    int i = 0;
+    int numberOfnights = 6;
+    while(1)
+    {
+        i +=1;
+        int price;
+        printf("Enter the price for hotel #%d: ", i);
+        cin >> price;
+        pricePerRoom.push_back(price);
+        if(i == numberOfnights)
+            break;
+    }
+    
+    
+    int firstCost = 0;
+    int j = 0;
+    while(1)
+    {
+        j += 1;
+        firstCost += pricePerRoom.front();
+        pricePerRoom.pop_front();
+        if(j == 3)
+            break;
+    }
+    
+    cout << "\n\nFirst Cost: $" << firstCost << endl;
+    cout << "\nSize: " << pricePerRoom.size() << endl; 
+    int sum = accumulate(begin(pricePerRoom), end(pricePerRoom), 0.0);
+    cout << "Sum: " << sum << endl;
+    
+    pricePerRoom.sort();
+    
+    cout << "mylist contains:";
+    for (list<int>::iterator it=pricePerRoom.begin(); it!=pricePerRoom.end() ; ++it)
+        cout << ' ' << *it;
+        
+
+    return 0;
+}
