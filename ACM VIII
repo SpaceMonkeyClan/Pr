@@ -1,0 +1,33 @@
+// Vector Sorting Example.
+// By Zereo 04/22/13
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <iterator>
+#include <list>
+#include <numeric>
+
+using namespace std;
+
+int main()
+{
+
+
+    std::list<int> l; // look, no pointers!
+    l.push_back(2);
+    l.push_back(4);
+    l.push_back(6);
+    l.push_back(1);
+    l.push_back(8);
+    auto index = l.begin();
+
+    std::advance(index, 2);
+    int indexf = *index;
+    std::cout << *index << '\n';
+    std::cout << indexf << endl;
+    cout << "Sum: " << sum(l) << endl;
+
+    
+    return 0;
+}
