@@ -1,0 +1,147 @@
+# ACM Problem #8 - V 1.0.0
+# Author: Dena, Rene
+# Last Modified: 7/14/17
+
+# _________________________Miscllanious_____________________________
+
+## What's Given?:
+### N = Number of consecutive nights.
+### K = Reward points required for free night.
+### Total number of free nights: N / (K + 1).
+
+# _________________________Functions________________________________
+
+
+def MainConsole():
+
+
+    print('\n\t\tWelcome to the MAIN CONSOLE!')
+    print('\nIn order to begin the process, you\'ll first need to enter the number of consecutive nights(CN) for your vacation.')
+
+    while True:
+        numberOfnights = input('\nWhat is the number of consecutive nights(CN)?: ')
+        if numberOfnights.isdigit():
+            print('\nAwesome!. Yov\'ve stated that your number of consecutive nights will be {}.'.format(numberOfnights))
+            break
+        else:
+            print('Please only ENTER a integer! >:|')
+
+    print('\nNext you\'ll be promoted to enter the amount of reward points(RP) required to obtain a free night.')
+
+    while True:
+        pointsRequried = input('\nWhat is the number of reward points required(RP)?: ')
+        if pointsRequried.isdigit():
+            print(
+                '\nCool!. Yov\'ve stated that the number of reward points required to obtain a free night is {} points.'.format(
+                    pointsRequried))
+            break
+        else:
+            print('Please only ENTER a integer! >:|')
+
+
+    print('\nNext, you\'ll need to enter the price for each of your {} hotels.'.format(numberOfnights))
+    print('Let\'s do that now!')
+
+    nightsTotal = int(numberOfnights)
+    pricePerRoom = []
+    i = 0
+    while 1:
+        i += 1
+        price = int(input('\nEnter the price for hotel #%d: ' % i))
+        pricePerRoom.append(price)
+        if i == nightsTotal:
+            break
+
+    listLength = len(pricePerRoom)
+    print('\nNice! You have now entered the prices per all {} of the hotels.'.format(listLength))
+
+    print('\nWe will now get to work and calculate the utmost cost-effective option for you.')
+
+    print('\nProcess will now begin.')
+    print('\n\t\tProcess now in progress:')
+    print('\nPROGRESS COMPLETION 35/100.....')
+    print('PROGRESS COMPLETION 55/100.....')
+    print('PROGRESS COMPLETION 67/100.....')
+    print('PROGRESS COMPLETION 82/100.....')
+    print('PROGRESS COMPLETION 98/100.....')
+    print('\n\t\tPROGRESS COMPLETE!')
+    print('\nNow taking you to our REPORT!')
+    print('\nLOADING...............')
+    print('\nDONE!')
+
+
+    def FreeNights(costs, K):
+        secondCost = 0
+        freeNights = []
+        points = K
+        for x in costs:
+            secondCost += x
+            if points == K:
+                freeNights.append(x)
+                freeNights.sort()
+                points = 0
+            else:
+                points += 1
+                if len(freeNights) > 0 and x > freeNights[0]:
+                    freeNights[0] = x
+                    freeNights.sort()
+        secondCostTotal = secondCost - sum(freeNights)
+
+        print('\nGiven the number of consecutive nights will be {} nights whilst the number of reward points required to obtain a free night is {} points, where;'.format(
+            numberOfnights, pointsRequried))
+        i = nightsTotal + 1
+        num = int(nightsTotal)
+        while 1:
+            num -= 1
+            i -= 1
+            print('Hotel #%d cost $%s' % (i, pricePerRoom[num]))
+            if i == 1:
+                break
+
+        firstCost = sum(pricePerRoom[:int(pointsRequried)])
+        print('\nYour minimum possible cost for your holiday accommodations is ${}.'.format(firstCost + secondCostTotal))
+
+        while True:
+            playAgain = input('\nWould you like to re-run the script with new inputs? Please ENTER "yes" or "no": ')
+            if playAgain == 'yes' or playAgain == 'YES':
+                print('\nAwesome! You\'ve selected to RE-RUN the script.')
+                print('\nHeading to the MAIN CONSOLE now.')
+                print('\nLOADING...............')
+                MainConsole()
+                break
+            elif playAgain == 'no' or playAgain == 'NO':
+                print('\nYou\'ve decided you would NOT like to re-run the script. Blows! :|')
+                print('\nHope we\'ve helped and hope to see you back soon.')
+                print('\nWe will now kick you from script.')
+                print('\nLOADING...............')
+                print('\nYou have now been kicked from script.')
+                print('\nGOOD DAY! :P')
+                print('\n')
+                break
+            else:
+                print('\nPlease only ENTER "yes" (or) "no"! >:|')
+
+
+
+    newList = pricePerRoom[int(pointsRequried):]
+    FreeNights(costs = newList, K = int(pointsRequried))
+
+
+# _________________________Strictly Script__________________________
+
+print('\n\t\t\tWelcome to the "Hotel Rewards Script"!\n')
+
+while True:
+    name = input('\nBefore we begin, what is your name?: ')
+    if len(name) > 0 and name.isalpha():
+        print('\nAwesome! We can now begin {}.'.format(name.title()))
+        break
+    else:
+        print('\nCANNOT continue if space was left empty.')
+        print('Please be sure to ENTER your name using a-z characters only! >:|')
+
+print('\nYou will now be taken to the MAIN CONSOLE.')
+print('\nHeading there now.....')
+print('\nLOADING...............')
+
+MainConsole()
