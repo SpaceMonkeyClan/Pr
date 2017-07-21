@@ -1,0 +1,234 @@
+// ACM Problem #8 - V 1.0.0
+// Author: Dena, Rene
+// Last Modified: 7/14/17
+
+// _________________________Miscllanious_____________________________
+
+// What's Given?:
+ // N = Number of consecutive nights.
+ // K = Reward points required for free night.
+ // Total number of free nights: N / (K + 1).
+
+#include <iostream>
+#include <cstring>
+#include <string>
+#include <cctype>
+#include <algorithm>
+#include <iterator>
+#include <numeric>
+#include <vector>
+#include <array>
+
+using namespace std;
+
+// _________________________Functions________________________________
+
+
+void MainConsole()
+{
+    cout << "\n\t\tWelcome to the MAIN CONSOLE!" << endl;
+    cout << "\nIn order to begin the process, you\'ll first need to enter the number of consecutive nights(CN) for your vacation." << endl;
+
+    int numberOfnights;
+    while(true)
+    {
+        cout << "\nWhat is the number of consecutive nights(CN)?: ";
+        cin >> numberOfnights;
+        if(cin.fail())
+        {
+            cout << "Please only ENTER a integer! >:|" << endl;
+            cin.clear();
+            cin.ignore(256, '\n');
+        }
+        else
+        {
+            cout << "\nAwesome!. Yov\'ve stated that your number of consecutive nights will be " << numberOfnights << "." << endl;
+            break;
+        }
+    }
+
+    cout << "\nNext you\'ll be promoted to enter the amount of reward points(RP) required to obtain a free night." << endl;
+
+    int pointsRequried;
+    while (true)
+    {
+        cout << "\nWhat is the number of reward points required(RP)?: ";
+        cin >> pointsRequried;
+        if(cin.fail())
+        {
+            cout << "Please only ENTER a integer! >:|" << endl;
+            cin.clear();
+            cin.ignore(256, '\n');
+        }
+        else
+        {
+            cout << "\nCool!. Yov\'ve stated that the number of reward points required to obtain a free night is " << pointsRequried << " points." << endl;
+            break;
+        }
+    }
+    
+    cout << "\nLastly, you\'ll need to enter the price for each of your " << numberOfnights << " hotels." << endl;
+    cout << "Let\'s do that now!" << endl;
+
+    // Prices Input
+    vector<int> pricePerRoom;
+    int i = 0;
+    while(1)
+    {
+        i += 1;
+        int price;
+        printf("Enter the price for hotel #%d: ", i);
+        cin >> price;
+        pricePerRoom.push_back(price);
+        if(i == numberOfnights)
+            break;
+    }
+
+    printf("\nNice! You have now entered the prices per all %d of the hotels.", numberOfnights);
+
+    cout << "\nWe will now get to work and calculate the utmost cost-effective option for you." << endl;
+
+    cout << "\nProcess will now begin." << endl;
+    cout << "\n\t\tProcess now in progress:" << endl;
+    cout << "\nPROGRESS COMPLETION 35/100....." << endl;
+    cout << "PROGRESS COMPLETION 55/100....." << endl;
+    cout << "PROGRESS COMPLETION 67/100....." << endl;
+    cout << "PROGRESS COMPLETION 82/100....." << endl;
+    cout << "PROGRESS COMPLETION 98/100....." << endl;
+    cout << "\n\t\tPROGRESS COMPLETE!" << endl;
+    cout << "\nNow taking you to our REPORT!" << endl;
+    cout << "\nLOADING..............." << endl;
+    cout << "\nDONE!" << endl;
+
+
+    // Regurgitated prices
+    cout << "\nGiven the number of consecutive nights will be " << numberOfnights << " nights whilst the number of reward points required to obtain a free night is " << pointsRequried << " points, where;" << endl;
+    int k = numberOfnights + 1;
+    while(1)
+    {
+        numberOfnights -= 1;
+        k -= 1;
+        auto index = pricePerRoom.begin();
+        advance(index, numberOfnights);
+        int indexNumber = *index;
+        printf("Hotel #%d costs: $%d", k, indexNumber);  // Pulling an index
+        cout << endl;
+        if(k == 1)
+            break;
+    }
+
+
+    // First cost and New list calculation
+    int firstCost = 0;
+    int j = pointsRequried;
+    while(1)
+    {
+        j -= 1;
+        firstCost += pricePerRoom[j];
+        pricePerRoom.erase(pricePerRoom.begin()+j);
+        if(j == 0)
+            break;
+    }
+
+
+    // Second cost calculation
+    int secondCost = 0;
+    vector<int> freeNights;
+    int points = pointsRequried;
+    i = 0;
+    do
+    {
+        int x = pricePerRoom[i];
+        secondCost += x;
+        if(points == pointsRequried)
+        {
+            freeNights.push_back(x);
+            sort(freeNights.begin(), freeNights.end());
+            points = 0;
+        }
+        else
+        {
+            points += 1;
+            if(freeNights.size() > 0 && x > freeNights[0])
+            {
+                freeNights[0] = pricePerRoom[i];
+                sort(freeNights.begin(), freeNights.end());
+            }
+        }
+        i++;
+    }while(i<pricePerRoom.size());
+
+    // Sub total calculation
+    int secondCostTotal = secondCost - accumulate(freeNights.begin(), freeNights.end(), 0);
+    int subTotal = firstCost + secondCostTotal;
+
+    printf("\nYour minimum possible cost for your holiday accommodations is $%d\n", subTotal);
+
+    
+    while(true)
+    {
+        string playAgain;
+        cout << "\nWould you like to re-run the script with new inputs? Please ENTER \"yes\" or \"no\": " << endl;
+        cin >> playAgain;
+        if(playAgain == "yes" or playAgain == "YES")
+        {
+            cout << "\nAwesome! You\'ve selected to RE-RUN the script." << endl;
+            cout << "\nHeading to the MAIN CONSOLE now." << endl;
+            cout << "\nLOADING..............." << endl;
+            MainConsole();
+            break;
+        }
+        else if(playAgain == "no" or playAgain == "NO")
+        {
+            cout << "\nYou\'ve decided you would NOT like to re-run the script. Blows! :|" << endl;
+            cout << "\nHope we\'ve helped and hope to see you back soon." << endl;
+            cout << "\nWe will now kick you from script." << endl;
+            cout << "\nLOADING..............." << endl;
+            cout << "\nYou have now been kicked from script." << endl;
+            cout << "\nGOOD DAY! :P" << endl;
+            cout << "\n" << endl;
+            break;
+        }
+        else
+            cout << "\nPlease only ENTER \"yes\" (or) \"no\"! >:|" << endl;
+    }
+}
+
+
+
+// _________________________Strictly Script__________________________
+
+
+int main()
+{
+    cout << "\n\t\t\tWelcome to the \"Hotel Rewards Script\"!\n" << endl;
+
+    while(true)
+    {
+        string name;
+        cout << "\nBefore we begin, what is your name?: " << endl;
+        getline (cin, name);
+        name[0] = toupper(name[0]);
+        if (name.length() > 0)
+        {
+            cout << "\nAwesome! We can now begin " << name << "." << endl;
+            break;
+        }
+        else
+        {
+            cout << "\nCANNOT continue if space was left empty." << endl;
+            cout << "Please be sure to ENTER your name using a-z characters only! >:|" << endl;
+        }
+    }
+
+
+    cout << "\nYou will now be taken to the MAIN CONSOLE." << endl;
+    cout << "\nHeading there now....." << endl;
+    cout << "\nLOADING..............." << endl;
+
+
+    MainConsole();
+
+
+    return 0;
+}
