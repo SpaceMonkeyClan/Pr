@@ -1,2 +1,0 @@
-# Miscllanious
-Miscllanious Code Snipits
