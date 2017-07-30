@@ -1,0 +1,44 @@
+// Example program
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
+int NumberOfNights()
+{
+    while(true)
+    {
+        int numberOfnights;
+        cout << "\nWhat is the number of consecutive nights(CN)?: ";
+        cin >> numberOfnights;
+        if(cin.fail())
+        {
+        	cout << "Please only ENTER a integer! >:|" << endl;
+        	cin.clear();
+        	cin.ignore(256, '\n');
+        	cin >> numberOfnights;
+        	
+        }
+        if(numberOfnights > 0) // && isdigit(numberOfnights)
+        {
+            cout << "\nAwesome!. Yov\'ve stated that your number of consecutive nights will be " << numberOfnights << "." << endl;
+            return numberOfnights;
+            break;
+        }
+        
+    }
+}
+
+
+int main()
+{
+
+    NumberOfNights();
+    return 0;
+}
+
+
+// title case()
+string str = ".....";
+str[0] = toupper(str[0]);
