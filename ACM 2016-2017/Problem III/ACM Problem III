@@ -1,0 +1,115 @@
+# ACM Problem #3 - V 1.0.0
+# Author: Dena, Rene
+# Last Modified: 7/13/17
+
+# _________________________Miscllanious_____________________________
+list's'
+	x in list
+	fot x in list: print x
+strings
+	in
+	not in
+	count()
+	find()
+	rfind()
+	index()
+	rindex()
+	lower()
+->	split()
+	splitlines()
+	startswith()
+	upper()
+
+
+# _________________________Functions________________________________
+
+def MainConsole():
+    cubit = 526.35 #mm
+
+    print('\n\t\tWelcome to the MAIN CONSOLE!')
+
+    print('\nIn order to begin the process, you\'ll first need to enter the Egyptian measurements. But before we you do so.........')
+
+    while True:
+        userChoiceI = input('\nHow many measurements will you be inputting?: ')
+        if userChoiceI.isdigit():
+            print('\nAwesome!. Yov\'ve stated that your gonna input {} different measurements.'.format(userChoiceI))
+            break
+        else:
+            print('Please only ENTER a integer! >:|')
+
+    print('\nLet us start........')
+
+    callBreak = int(userChoiceI)
+    listN = []
+    i = 0
+    while 1:
+        i += 1
+        measurement = input('\nEnter measurement #%d: ' % i) # 300 cubits
+        listN.append(measurement)
+        print(listN)
+        if i == callBreak:
+            break
+
+    
+
+
+    print('\nNice! You have now entered all of your {} measurements.'.format(userChoiceI))
+
+    print('\nWe will now get to work and calculate the conversion of the metrics entered into meters and feet.')
+
+    print('\nProcess will now begin.')
+    print('\n\t\tProcess now in progress:')
+    print('\nPROGRESS COMPLETION 35/100.....')
+    print('PROGRESS COMPLETION 55/100.....')
+    print('PROGRESS COMPLETION 67/100.....')
+    print('PROGRESS COMPLETION 82/100.....')
+    print('PROGRESS COMPLETION 98/100.....')
+    print('\n\t\tPROGRESS COMPLETE!')
+    print('\nNow taking you to our REPORT!')
+    print('\nLOADING...............')
+    print('\nDONE!')
+
+
+
+
+
+    while True:
+        playAgain = input('\nWould you like to re-run the script? Please ENTER "yes" or "no": ')
+        if playAgain == 'yes' or playAgain == 'YES':
+            print('\nAwesome! You\'ve selected to RE-RUN the script.')
+            print('\nHeading to the MAIN CONSOLE now.')
+            print('\nLOADING...............')
+            MainConsole()
+            break
+        elif playAgain == 'no' or playAgain == 'NO':
+            print('\nYou\'ve decided you would NOT re-run the script. Blows! :|')
+            print('\nHope we\'ve helped and hope to see you back soon.')
+            print('\nWe will now kick you from script.')
+            print('\nLOADING...............')
+            print('\nYou have now been kicked from script.')
+            print('\nGOOD DAY! :)')
+            print('\n')
+            break
+        else:
+            print('\nPlease only ENTER "yes" (or) "no"! >:|')
+
+
+# _________________________Strictly Script__________________________
+
+print('\n\t\t\tWelcome to the "What\'s A Cubit?" Script!\n\n')
+
+while True:
+    name = input('\nBefore we begin, what is your name?: ')
+    if len(name) > 0 and name.isalpha():
+        print('\nAwesome! We can now begin {}.'.format(name.title()))
+        break
+    else:
+        print('\nCANNOT continue if space was left empty.')
+        print('Please be sure to ENTER your name using a-z characters only.')
+
+print('\nYou will now be taken to the MAIN CONSOLE.')
+print('\nHeading there now.....')
+print('\nLOADING...............')
+
+MainConsole()
